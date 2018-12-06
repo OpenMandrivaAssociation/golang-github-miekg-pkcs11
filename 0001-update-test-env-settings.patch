@@ -1,0 +1,28 @@
+From 704f7e678a3e4ad3e435807782f8c977bf8033ff Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Fri, 9 Oct 2015 11:39:58 +0200
+Subject: [PATCH] update test env settings
+
+---
+ pkcs11_test.go | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/pkcs11_test.go b/pkcs11_test.go
+index 0ac02a2..a4d0417 100644
+--- a/pkcs11_test.go
++++ b/pkcs11_test.go
+@@ -15,9 +15,8 @@ import (
+ )
+ 
+ func setenv(t *testing.T) *Ctx {
+-	wd, _ := os.Getwd()
+-	os.Setenv("SOFTHSM_CONF", wd+"/softhsm.conf")
+-	p := New("/usr/lib/softhsm/libsofthsm.so") //p := New("/home/miek/libsofthsm.so")
++	os.Setenv("SOFTHSM_CONF", "/etc/softhsm.conf")
++	p := New("/usr/lib64/softhsm/libsofthsm.so") //p := New("/home/miek/libsofthsm.so")
+ 	if p == nil {
+ 		t.Fatal("Failed to init lib")
+ 	}
+-- 
+1.9.3
+

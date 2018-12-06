@@ -1,0 +1,26 @@
+From 2e2af4063e730ffa6e67c3e5a0b2566baa0437c2 Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Fri, 9 Oct 2015 00:18:57 +0200
+Subject: [PATCH] use system library
+
+---
+ pkcs11.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/pkcs11.go b/pkcs11.go
+index 44023ca..ed9323d 100644
+--- a/pkcs11.go
++++ b/pkcs11.go
+@@ -11,7 +11,8 @@ package pkcs11
+ // * CK_ULONG never overflows an Go int
+ 
+ /*
+-#cgo LDFLAGS: -lltdl
++#cgo CFLAGS: -I/usr/include -I/usr/include/libltdl
++#cgo LDFLAGS: -L/usr/lib64/ -lltdl
+ #define CK_PTR *
+ #ifndef NULL_PTR
+ #define NULL_PTR 0
+-- 
+1.9.3
+

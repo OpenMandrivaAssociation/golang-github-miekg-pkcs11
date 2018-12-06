@@ -1,0 +1,34 @@
+From d747f5382d33d2421d3209d7ad993b1e4aa8e3c5 Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Sun, 8 Jul 2018 18:56:38 +0200
+Subject: [PATCH] Fix formatting
+
+---
+ pkcs11_test.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pkcs11_test.go b/pkcs11_test.go
+index a4d0417..58c4932 100644
+--- a/pkcs11_test.go
++++ b/pkcs11_test.go
+@@ -36,7 +36,7 @@ func getSession(p *Ctx, t *testing.T) SessionHandle {
+ 		t.Fatalf("session %s\n", e.Error())
+ 	}
+ 	if e := p.Login(session, CKU_USER, "1234"); e != nil {
+-		t.Fatal("user pin %s\n", e.Error())
++		t.Fatalf("user pin %s\n", e.Error())
+ 	}
+ 	return session
+ }
+@@ -178,7 +178,7 @@ func testDestroyObject(t *testing.T) {
+ 
+ 	p.Logout(session) // log out the normal user
+ 	if e := p.Login(session, CKU_SO, "1234"); e != nil {
+-		t.Fatal("security officer pin %s\n", e.Error())
++		t.Fatalf("security officer pin %s\n", e.Error())
+ 	}
+ 
+ 	// Looking the int values is tricky because they are stored in 64 bits in hsm.db,
+-- 
+2.7.5
+
